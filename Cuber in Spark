@@ -1,0 +1,378 @@
+{
+  "paragraphs": [
+    {
+      "title": "Dataset",
+      "text": "%md\nThis notebook shows building a Cube using Spark. The dataset used is the tpcds store_sales. ",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Apr 5, 2018 1:10:59 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1494479531303_779827804",
+      "id": "20170511-051211_1699440966_q_TUVJMHF9Z71522889746",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eThis notebook shows building a Cube using Spark. The dataset used is the tpcds store_sales.\u003c/p\u003e\n\u003c/div\u003e"
+      },
+      "dateCreated": "May 11, 2017 5:12:11 AM",
+      "dateStarted": "Apr 5, 2018 1:10:59 AM",
+      "dateFinished": "Apr 5, 2018 1:11:01 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\ncreate table store_sales_2002_plus as select * from tpcds_orc_500.store_sales where ss_sold_date_sk \u003e\u003d 2452276",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Apr 5, 2018 1:10:59 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "paragraphProgress": {
+        "jobs": [],
+        "numCompletedTasks": 0,
+        "numTasks": 0,
+        "truncated": false
+      },
+      "version": "v0",
+      "jobName": "paragraph_1493407734049_-1679680475",
+      "id": "20170428-192854_954174520_q_TUVJMHF9Z71522889746",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Table or view not found: `tpcds_orc_500`.`store_sales`; line 1 pos 52;\n\u0027Project [*]\n+- \u0027Filter (\u0027ss_sold_date_sk \u003e\u003d 2452276)\n   +- \u0027UnresolvedRelation `tpcds_orc_500`.`store_sales`\n\nset zeppelin.spark.sql.stacktrace \u003d true to see full stacktrace"
+      },
+      "dateCreated": "Apr 28, 2017 7:28:54 PM",
+      "dateStarted": "Apr 5, 2018 1:10:59 AM",
+      "dateFinished": "Apr 5, 2018 1:11:47 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect count(*) from store_sales_2002_plus",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Apr 5, 2018 1:10:59 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1493407755056_-16749756",
+      "id": "20170428-192915_152318367_q_TUVJMHF9Z71522889746",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Table or view not found: store_sales_2002_plus; line 1 pos 21\nset zeppelin.spark.sql.stacktrace \u003d true to see full stacktrace"
+      },
+      "dateCreated": "Apr 28, 2017 7:29:15 PM",
+      "dateStarted": "Apr 5, 2018 1:11:03 AM",
+      "dateFinished": "Apr 5, 2018 1:11:47 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\ncreate table store_sales_cube as select sum(ss_ext_sales_price) as sum_extended_price, \n             sum(ss_sales_price) as sum_sales_price, sum(ss_net_profit) as sum_net_profit,\n             sum(ss_wholesale_cost) as sum_wholesale_cost, sum(ss_coupon_amt) as sum_coupon_amt,\n             sum(ss_list_price) as sum_list_price, \n             d_year, d_qoy, d_moy, d_date, s_store_id,\n             cd_gender, cd_marital_status, cd_education_status, grouping_id()\n      from store_sales_2002_plus join tpcds_orc_500.item on ss_item_sk \u003d i_item_sk \n             join tpcds_orc_500.customer on ss_customer_sk \u003d c_customer_sk \n             join tpcds_orc_500.date_dim on ss_sold_date_sk \u003d d_date_sk \n             join tpcds_orc_500.customer_demographics on ss_cdemo_sk \u003d cd_demo_sk \n             join tpcds_orc_500.promotion on ss_promo_sk \u003d p_promo_sk \n             join tpcds_orc_500.household_demographics on ss_hdemo_sk \u003d hd_demo_sk \n             join tpcds_orc_500.store on ss_store_sk \u003d s_store_sk \n             join tpcds_orc_500.time_dim on ss_sold_time_sk \u003d t_time_sk\n        group by d_year, d_qoy, d_moy, d_date, s_store_id,\n             cd_gender, cd_marital_status, cd_education_status\n        with cube",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Apr 5, 2018 1:11:02 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "paragraphProgress": {
+        "jobs": [],
+        "numCompletedTasks": 0,
+        "numTasks": 0,
+        "truncated": false
+      },
+      "version": "v0",
+      "jobName": "paragraph_1493412809609_-1840613905",
+      "id": "20170428-205329_795065851_q_TUVJMHF9Z71522889746",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Table or view not found: store_sales_2002_plus; line 7 pos 11\nset zeppelin.spark.sql.stacktrace \u003d true to see full stacktrace"
+      },
+      "dateCreated": "Apr 28, 2017 8:53:29 PM",
+      "dateStarted": "Apr 5, 2018 1:11:48 AM",
+      "dateFinished": "Apr 5, 2018 1:11:50 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect * from store_sales_cube limit 10",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Apr 5, 2018 1:11:02 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1493443717323_706136172",
+      "id": "20170429-052837_1865837818_q_TUVJMHF9Z71522889746",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Table or view not found: store_sales_cube; line 1 pos 14\nset zeppelin.spark.sql.stacktrace \u003d true to see full stacktrace"
+      },
+      "dateCreated": "Apr 29, 2017 5:28:37 AM",
+      "dateStarted": "Apr 5, 2018 1:11:50 AM",
+      "dateFinished": "Apr 5, 2018 1:11:51 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect count(*) from store_sales_cube",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Apr 5, 2018 1:11:02 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1494440326584_-139895722",
+      "id": "20170510-181846_2030411995_q_TUVJMHF9Z71522889746",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Table or view not found: store_sales_cube; line 1 pos 21\nset zeppelin.spark.sql.stacktrace \u003d true to see full stacktrace"
+      },
+      "dateCreated": "May 10, 2017 6:18:46 PM",
+      "dateStarted": "Apr 5, 2018 1:11:51 AM",
+      "dateFinished": "Apr 5, 2018 1:11:51 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect cd_gender, sum_sales_price\n  From store_sales_cube \n  Where\n  cd_gender \u003d \"F\"\n  AND\n  d_moy \u003d 10\n  ",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Apr 5, 2018 1:11:02 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "cd_gender",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "sum_sales_price",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "cd_gender",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "sum_sales_price",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1494440507433_1376059272",
+      "id": "20170510-182147_2114494943_q_TUVJMHF9Z71522889746",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Table or view not found: store_sales_cube; line 2 pos 7\nset zeppelin.spark.sql.stacktrace \u003d true to see full stacktrace"
+      },
+      "dateCreated": "May 10, 2017 6:21:47 PM",
+      "dateStarted": "Apr 5, 2018 1:11:51 AM",
+      "dateFinished": "Apr 5, 2018 1:11:51 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect d_year, d_qoy\nfrom store_sales_cube ",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Apr 5, 2018 1:11:02 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1494440617153_-442847993",
+      "id": "20170510-182337_1142473554_q_TUVJMHF9Z71522889746",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Table or view not found: store_sales_cube; line 2 pos 5\nset zeppelin.spark.sql.stacktrace \u003d true to see full stacktrace"
+      },
+      "dateCreated": "May 10, 2017 6:23:37 PM",
+      "dateStarted": "Apr 5, 2018 1:11:51 AM",
+      "dateFinished": "Apr 5, 2018 1:11:51 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Apr 5, 2018 1:11:02 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1494440829495_488334646",
+      "id": "20170510-182709_1906993134_q_TUVJMHF9Z71522889746",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "May 10, 2017 6:27:09 PM",
+      "dateStarted": "Apr 5, 2018 1:11:51 AM",
+      "dateFinished": "Apr 5, 2018 1:11:51 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Cubes in Spark",
+  "id": "TUVJMHF9Z71522889746",
+  "angularObjects": {
+    "2D8NDCXSA41461521580020004:shared_process": [],
+    "2DBW28ATZ41461521580020045:shared_process": [],
+    "2D87EETES41461521580020019:shared_process": [],
+    "2DBTRYZ9S41461521580019932:shared_process": []
+  },
+  "config": {
+    "isDashboard": false
+  },
+  "info": {},
+  "source": "FCN"
+}
