@@ -2,9 +2,9 @@
   "paragraphs": [
     {
       "title": "Dataset",
-      "text": "%md\nThis notebook shows building a Cube using Spark. The dataset used is the tpcds store_sales. Version 2. ",
+      "text": "%md\nThis notebook shows building a Cube using Spark. The dataset used is the tpcds store_sales. Version 3. ",
       "user": "ryerramilli@qubole.com",
-      "dateUpdated": "Feb 16, 2019 4:14:46 PM",
+      "dateUpdated": "Feb 16, 2019 4:19:28 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -26,7 +26,7 @@
       },
       "version": "v0",
       "jobName": "paragraph_1494479531303_779827804",
-      "id": "20170511-051211_1699440966_q_TUVJMHF9Z71522889746",
+      "id": "20170511-051211_1699440966_q_6CGPVHXYH71550333750",
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
@@ -68,7 +68,7 @@
       },
       "version": "v0",
       "jobName": "paragraph_1493407734049_-1679680475",
-      "id": "20170428-192854_954174520_q_TUVJMHF9Z71522889746",
+      "id": "20170428-192854_954174520_q_6CGPVHXYH71550333750",
       "result": {
         "code": "ERROR",
         "type": "TEXT",
@@ -104,7 +104,7 @@
       },
       "version": "v0",
       "jobName": "paragraph_1493407755056_-16749756",
-      "id": "20170428-192915_152318367_q_TUVJMHF9Z71522889746",
+      "id": "20170428-192915_152318367_q_6CGPVHXYH71550333750",
       "result": {
         "code": "ERROR",
         "type": "TEXT",
@@ -146,7 +146,7 @@
       },
       "version": "v0",
       "jobName": "paragraph_1493412809609_-1840613905",
-      "id": "20170428-205329_795065851_q_TUVJMHF9Z71522889746",
+      "id": "20170428-205329_795065851_q_6CGPVHXYH71550333750",
       "result": {
         "code": "ERROR",
         "type": "TEXT",
@@ -182,7 +182,7 @@
       },
       "version": "v0",
       "jobName": "paragraph_1493443717323_706136172",
-      "id": "20170429-052837_1865837818_q_TUVJMHF9Z71522889746",
+      "id": "20170429-052837_1865837818_q_6CGPVHXYH71550333750",
       "result": {
         "code": "ERROR",
         "type": "TEXT",
@@ -218,7 +218,7 @@
       },
       "version": "v0",
       "jobName": "paragraph_1494440326584_-139895722",
-      "id": "20170510-181846_2030411995_q_TUVJMHF9Z71522889746",
+      "id": "20170510-181846_2030411995_q_6CGPVHXYH71550333750",
       "result": {
         "code": "ERROR",
         "type": "TEXT",
@@ -277,7 +277,7 @@
       },
       "version": "v0",
       "jobName": "paragraph_1494440507433_1376059272",
-      "id": "20170510-182147_2114494943_q_TUVJMHF9Z71522889746",
+      "id": "20170510-182147_2114494943_q_6CGPVHXYH71550333750",
       "result": {
         "code": "ERROR",
         "type": "TEXT",
@@ -313,7 +313,7 @@
       },
       "version": "v0",
       "jobName": "paragraph_1494440617153_-442847993",
-      "id": "20170510-182337_1142473554_q_TUVJMHF9Z71522889746",
+      "id": "20170510-182337_1142473554_q_6CGPVHXYH71550333750",
       "result": {
         "code": "ERROR",
         "type": "TEXT",
@@ -349,7 +349,7 @@
       },
       "version": "v0",
       "jobName": "paragraph_1494440829495_488334646",
-      "id": "20170510-182709_1906993134_q_TUVJMHF9Z71522889746",
+      "id": "20170510-182709_1906993134_q_6CGPVHXYH71550333750",
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
@@ -363,7 +363,7 @@
     }
   ],
   "name": "Cubes in Spark",
-  "id": "TUVJMHF9Z71522889746",
+  "id": "6CGPVHXYH71550333750",
   "angularObjects": {
     "2D8NDCXSA41461521580020004:shared_process": [],
     "2DBW28ATZ41461521580020045:shared_process": [],
