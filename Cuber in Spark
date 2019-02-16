@@ -2,9 +2,9 @@
   "paragraphs": [
     {
       "title": "Dataset",
-      "text": "%md\nThis notebook shows building a Cube using Spark. The dataset used is the tpcds store_sales. ",
+      "text": "%md\nThis notebook shows building a Cube using Spark. The dataset used is the tpcds store_sales. Version 2. ",
       "user": "ryerramilli@qubole.com",
-      "dateUpdated": "Apr 5, 2018 1:10:59 AM",
+      "dateUpdated": "Feb 16, 2019 4:14:46 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
