@@ -1,0 +1,295 @@
+{
+  "paragraphs": [
+    {
+      "title": "Install Libraries",
+      "text": "%md\n1) This notebook assumes that the user has Python 2.7 enabled/or as default in the cluster\nFor details please refer to http://docs.qubole.com/en/latest/faqs/hadoop-clusters/can-use-python-2-7-hadoop-tasks-2.html\nIf the default version on your cluster is not Python 2.7, please add the following code to the Cluster node bootstrap script:\n\n    source /usr/lib/hustler/bin/qubole-bash-lib.sh\n    make-python2.7-system-default\n\n2) The Python libraries used in this notebook are Pandas and Plotly. Please add the following code to the Cluster node bootstrap script:\n\n    pip install pandas\n    pip install \u0027plotly\u003c\u003d2.0\u0027\n\n3)  To use pyspark, we have two options. Either use %pyspark as the first line in each paragraph or in the Interpreter settings, change the property to the following:\n   \n    zeppelin.default.interpreter\tpyspark",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Jun 5, 2018 5:25:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1474988081516_1768124929",
+      "id": "20160927-145441_538490295_q_B93VST7CX31522515484",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e1) This notebook assumes that the user has Python 2.7 enabled/or as default in the cluster\u003cbr/\u003eFor details please refer to \u003ca href\u003d\"http://docs.qubole.com/en/latest/faqs/hadoop-clusters/can-use-python-2-7-hadoop-tasks-2.html\"\u003ehttp://docs.qubole.com/en/latest/faqs/hadoop-clusters/can-use-python-2-7-hadoop-tasks-2.html\u003c/a\u003e\u003cbr/\u003eIf the default version on your cluster is not Python 2.7, please add the following code to the Cluster node bootstrap script:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003esource /usr/lib/hustler/bin/qubole-bash-lib.sh\nmake-python2.7-system-default\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e2) The Python libraries used in this notebook are Pandas and Plotly. Please add the following code to the Cluster node bootstrap script:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003epip install pandas\npip install \u0026#39;plotly\u0026lt;\u003d2.0\u0026#39;\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e3) To use pyspark, we have two options. Either use %pyspark as the first line in each paragraph or in the Interpreter settings, change the property to the following:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003ezeppelin.default.interpreter    pyspark\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/div\u003e"
+      },
+      "dateCreated": "Sep 27, 2016 2:54:41 PM",
+      "dateStarted": "Jun 5, 2018 5:25:58 PM",
+      "dateFinished": "Jun 5, 2018 5:26:01 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Imports",
+      "text": "%pyspark\nimport plotly\nimport plotly.graph_objs as go\n\n# Create random data with numpy\nimport numpy as np\n",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Jun 5, 2018 5:25:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/python",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "paragraphProgress": {
+        "jobs": [],
+        "numCompletedTasks": 0,
+        "numTasks": 0,
+        "truncated": false
+      },
+      "version": "v0",
+      "jobName": "paragraph_1470408372792_1589900085",
+      "id": "20160805-144612_512495861_q_B93VST7CX31522515484",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Traceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-6837674978630928782.py\", line 299, in \u003cmodule\u003e\n    raise Exception(traceback.format_exc())\nException: Traceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-6837674978630928782.py\", line 292, in \u003cmodule\u003e\n    exec(code)\n  File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\nImportError: No module named plotly\n\n"
+      },
+      "dateCreated": "Aug 5, 2016 2:46:12 PM",
+      "dateStarted": "Jun 5, 2018 5:25:58 PM",
+      "dateFinished": "Jun 5, 2018 5:27:29 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Define Plot Function",
+      "text": "%pyspark\ndef plot(plot_dic, height\u003d1000, width\u003d1000, **kwargs):\n    kwargs[\u0027output_type\u0027] \u003d \u0027div\u0027\n    plot_str \u003d plotly.offline.plot(plot_dic, **kwargs)\n    print(\u0027%%angular \u003cdiv style\u003d\"height: %ipx; width: %spx\"\u003e %s \u003c/div\u003e\u0027 % (height, width, plot_str))",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Jun 5, 2018 5:25:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/python",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "paragraphProgress": {
+        "jobs": [],
+        "numCompletedTasks": 0,
+        "numTasks": 0,
+        "truncated": false
+      },
+      "version": "v0",
+      "jobName": "paragraph_1470699758029_-364907372",
+      "id": "20160808-234238_165397529_q_B93VST7CX31522515484",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Aug 8, 2016 11:42:38 PM",
+      "dateStarted": "Jun 5, 2018 5:26:06 PM",
+      "dateFinished": "Jun 5, 2018 5:27:34 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Generate random values",
+      "text": "%pyspark\nN \u003d 100\nrandom_x \u003d np.linspace(0, 1, N)\nrandom_y0 \u003d np.random.randn(N)+5\nrandom_y1 \u003d np.random.randn(N)\nrandom_y2 \u003d np.random.randn(N)-5",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Jun 5, 2018 5:26:05 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/python",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1470408391009_636507635",
+      "id": "20160805-144631_254031848_q_B93VST7CX31522515484",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Traceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-6837674978630928782.py\", line 299, in \u003cmodule\u003e\n    raise Exception(traceback.format_exc())\nException: Traceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-6837674978630928782.py\", line 292, in \u003cmodule\u003e\n    exec(code)\n  File \"\u003cstdin\u003e\", line 2, in \u003cmodule\u003e\nNameError: name \u0027np\u0027 is not defined\n\n"
+      },
+      "dateCreated": "Aug 5, 2016 2:46:31 PM",
+      "dateStarted": "Jun 5, 2018 5:27:34 PM",
+      "dateFinished": "Jun 5, 2018 5:27:34 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Create traces",
+      "text": "%pyspark\ntrace0 \u003d go.Scatter(\n    x \u003d random_x,\n    y \u003d random_y0,\n    mode \u003d \u0027markers\u0027,\n    name \u003d \u0027markers\u0027\n)\ntrace1 \u003d go.Scatter(\n    x \u003d random_x,\n    y \u003d random_y1,\n    mode \u003d \u0027lines+markers\u0027,\n    name \u003d \u0027lines+markers\u0027\n)\ntrace2 \u003d go.Scatter(\n    x \u003d random_x,\n    y \u003d random_y2,\n    mode \u003d \u0027lines\u0027,\n    name \u003d \u0027lines\u0027\n)",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Jun 5, 2018 5:26:05 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/python",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1470699839897_1398720289",
+      "id": "20160808-234359_261816757_q_B93VST7CX31522515484",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Traceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-6837674978630928782.py\", line 299, in \u003cmodule\u003e\n    raise Exception(traceback.format_exc())\nException: Traceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-6837674978630928782.py\", line 292, in \u003cmodule\u003e\n    exec(code)\n  File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\nNameError: name \u0027go\u0027 is not defined\n\n"
+      },
+      "dateCreated": "Aug 8, 2016 11:43:59 PM",
+      "dateStarted": "Jun 5, 2018 5:27:34 PM",
+      "dateFinished": "Jun 5, 2018 5:27:34 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Plots",
+      "text": "%pyspark\nlayout \u003d dict(\n        title \u003d \u0027Line and Scatter Plots\u0027,\n        xaxis \u003d dict(title\u003d\u0027X Axis\u0027),\n        yaxis \u003d dict(title\u003d\u0027Y Axis\u0027),\n        showlegend \u003d False, \n        height \u003d 800\n    )\n    \ndata1 \u003d [trace0, trace1, trace2]\nfig1 \u003d dict( data\u003ddata1, layout\u003dlayout )\nplot(fig1,  show_link\u003dFalse)",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Jun 5, 2018 5:26:05 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/python",
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1470699892621_-1253091724",
+      "id": "20160808-234452_1250946245_q_B93VST7CX31522515484",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Traceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-6837674978630928782.py\", line 299, in \u003cmodule\u003e\n    raise Exception(traceback.format_exc())\nException: Traceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-6837674978630928782.py\", line 292, in \u003cmodule\u003e\n    exec(code)\n  File \"\u003cstdin\u003e\", line 8, in \u003cmodule\u003e\nNameError: name \u0027trace0\u0027 is not defined\n\n"
+      },
+      "dateCreated": "Aug 8, 2016 11:44:52 PM",
+      "dateStarted": "Jun 5, 2018 5:27:34 PM",
+      "dateFinished": "Jun 5, 2018 5:27:34 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Jun 5, 2018 5:26:05 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v0",
+      "jobName": "paragraph_1470699972990_1134549392",
+      "id": "20160808-234612_2094041975_q_B93VST7CX31522515484",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Aug 8, 2016 11:46:12 PM",
+      "dateStarted": "Jun 5, 2018 5:27:34 PM",
+      "dateFinished": "Jun 5, 2018 5:27:34 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "RPlotly ScatterPlot",
+  "id": "B93VST7CX31522515484",
+  "angularObjects": {
+    "2D8NDCXSA41461521580020004:shared_process": [],
+    "2DBW28ATZ41461521580020045:shared_process": [],
+    "2D87EETES41461521580020019:shared_process": [],
+    "2DBTRYZ9S41461521580019932:shared_process": []
+  },
+  "config": {
+    "looknfeel": "default",
+    "isDashboard": false
+  },
+  "info": {},
+  "source": "FCN"
+}
