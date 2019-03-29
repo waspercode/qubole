@@ -1,0 +1,97 @@
+{
+  "paragraphs": [
+    {
+      "text": "sc\nspark\nsqlContext\nz",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Feb 18, 2019 12:04:46 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "paragraphProgress": {
+        "jobs": [],
+        "numCompletedTasks": 0,
+        "numTasks": 0,
+        "truncated": false
+      },
+      "version": "v1",
+      "jobName": "paragraph_1550444774612_958370481",
+      "id": "20190217-230614_1987933619_q_66FUQNSCF51550444649",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "\nres0: org.apache.spark.SparkContext \u003d org.apache.spark.SparkContext@5aa9b1cb\n\nres1: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@628dd7c7\n\nres2: org.apache.spark.sql.SQLContext \u003d org.apache.spark.sql.SQLContext@1839662b\n\nres3: org.apache.zeppelin.spark.ZeppelinContext \u003d org.apache.zeppelin.spark.ZeppelinContext@32d1a092\n"
+      },
+      "dateCreated": "Feb 17, 2019 11:06:14 PM",
+      "dateSubmitted": "Feb 18, 2019 12:04:46 AM",
+      "dateStarted": "Feb 18, 2019 12:04:48 AM",
+      "dateFinished": "Feb 18, 2019 12:05:17 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 1000
+    },
+    {
+      "text": "%md\nThis is sample text version 1.0",
+      "user": "ryerramilli@qubole.com",
+      "dateUpdated": "Mar 29, 2019 3:45:03 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "version": "v1",
+      "jobName": "paragraph_1550445158307_2055442837",
+      "id": "20190217-231238_273595857_q_66FUQNSCF51550444649",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eThis is sample text\u003c/p\u003e\n\u003c/div\u003e"
+      },
+      "dateCreated": "Feb 17, 2019 11:12:38 PM",
+      "dateSubmitted": "Feb 17, 2019 11:15:23 PM",
+      "dateStarted": "Feb 17, 2019 11:15:24 PM",
+      "dateFinished": "Feb 17, 2019 11:15:25 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 1000
+    }
+  ],
+  "name": "Git Test Notebook1",
+  "id": "66FUQNSCF51550444649",
+  "angularObjects": {
+    "2D8NDCXSA41461521580020004:shared_process": [],
+    "2DBW28ATZ41461521580020045:shared_process": [],
+    "2D87EETES41461521580020019:shared_process": [],
+    "2DBTRYZ9S41461521580019932:shared_process": []
+  },
+  "config": {
+    "isDashboard": false,
+    "defaultLang": ""
+  },
+  "info": {},
+  "source": "FCN"
+}
