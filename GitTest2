@@ -44,9 +44,9 @@
       "progressUpdateIntervalMs": 1000
     },
     {
-      "text": "%md\nThis is sample text version 1.0",
+      "text": "%md\nThis is sample text version 2.0",
       "user": "ryerramilli@qubole.com",
-      "dateUpdated": "Mar 29, 2019 3:45:03 PM",
+      "dateUpdated": "Apr 1, 2019 1:08:15 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -82,7 +82,12 @@
   ],
   "name": "Git Test Notebook2",
   "id": "6C2WKX8MCS1554080592",
-  "angularObjects": {},
+  "angularObjects": {
+    "2D8NDCXSA41461521580020004:shared_process": [],
+    "2DBW28ATZ41461521580020045:shared_process": [],
+    "2D87EETES41461521580020019:shared_process": [],
+    "2DBTRYZ9S41461521580019932:shared_process": []
+  },
   "config": {
     "isDashboard": false,
     "defaultLang": "spark"
